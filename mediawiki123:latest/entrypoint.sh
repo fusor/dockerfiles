@@ -12,6 +12,7 @@ fi
 : ${MEDIAWIKI_DB_TYPE:=postgres}
 : ${MEDIAWIKI_DB_SCHEMA:=wiki}
 : ${MEDIAWIKI_SHARED:=/persistent}
+: ${MEDIAWIKI_LOGO:=\$wgStylePath/common/images/wiki.png}
 : ${POSTGRESQL_USER:=postgres}
 : ${POSTGRESQL_DATABASE:=mediawiki}
 
@@ -61,6 +62,10 @@ fi
 if [ -e "$LOCAL_SETTINGS" -a "$MEDIAWIKI_UPDATE" = true ]; then
   echo >&2 'info: Running maintenance/update.php';
   php /usr/share/mediawiki123/maintenance/update.php --quick --conf $LOCAL_SETTINGS
+fi
+
+if [ -e  "$LOCAL_SETTINGS" ]; then
+  sed -i -e '/$wgLogo/c\$wgLogo = '\"$MEDIAWIKI_LOGO'\";' $LOCAL_SETTINGS
 fi
 
 /sbin/httpd -DFOREGROUND -f ${BASE_DIR}/httpd/conf/httpd.conf
