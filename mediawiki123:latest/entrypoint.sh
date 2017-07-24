@@ -9,30 +9,30 @@ fi
 : ${MEDIAWIKI_SITE_LANG:=en}
 : ${MEDIAWIKI_ADMIN_USER:=admin}
 : ${MEDIAWIKI_ADMIN_PASS:=rosebud}
-: ${MEDIAWIKI_DB_TYPE:=postgres}
 : ${MEDIAWIKI_DB_SCHEMA:=wiki}
 : ${MEDIAWIKI_SHARED:=/persistent}
 : ${MEDIAWIKI_LOGO:=\$wgStylePath/common/images/wiki.png}
-: ${POSTGRESQL_USER:=postgres}
-: ${POSTGRESQL_DATABASE:=mediawiki}
+: ${DB_TYPE:=postgres}
+: ${DB_USER:=postgres}
+: ${DB_NAME:=mediawiki}
 
 LOCAL_SETTINGS=${BASE_DIR}/httpd/mediawiki123/LocalSettings.php
 IMAGE_DIR=${BASE_DIR}/httpd/mediawiki123/images
 if [ -d "$MEDIAWIKI_SHARED" ]; then
-  if [ ! -e "$MEDIAWIKI_SHARED/LocalSettings.php" ] && [ ! -z "${POSTGRESQL_HOST}" ]; then
+  if [ ! -e "$MEDIAWIKI_SHARED/LocalSettings.php" ] && [ ! -z "${DB_HOST}" ]; then
     # If the container is restarted this will fail because the tables are already created
     # but there won't be a LocalSettings.php
     php /usr/share/mediawiki123/maintenance/install.php \
       --confpath ${BASE_DIR}/httpd/mediawiki123 \
-      --dbname "$POSTGRESQL_DATABASE" \
+      --dbname "$DB_NAME" \
       --dbschema "$MEDIAWIKI_DB_SCHEMA" \
-      --dbport "$POSTGRESQL_PORT" \
-      --dbserver "$POSTGRESQL_HOST" \
-      --dbtype "$MEDIAWIKI_DB_TYPE" \
-      --dbuser "$POSTGRESQL_USER" \
-      --dbpass "$POSTGRESQL_PASSWORD" \
-      --installdbuser "$POSTGRESQL_USER" \
-      --installdbpass "$POSTGRESQL_PASSWORD" \
+      --dbport "$DB_PORT" \
+      --dbserver "$DB_HOST" \
+      --dbtype "$DB_TYPE" \
+      --dbuser "$DB_USER" \
+      --dbpass "$DB_PASSWORD" \
+      --installdbuser "$DB_USER" \
+      --installdbpass "$DB_PASSWORD" \
       --scriptpath "" \
       --server "http://${MEDIAWIKI_SITE_SERVER}" \
       --lang "$MEDIAWIKI_SITE_LANG" \
