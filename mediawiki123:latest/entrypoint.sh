@@ -47,6 +47,9 @@ if [ -d "$MEDIAWIKI_SHARED" ]; then
     mv $LOCAL_SETTINGS $MEDIAWIKI_SHARED/LocalSettings.php
     ln -s $MEDIAWIKI_SHARED/LocalSettings.php $LOCAL_SETTINGS
   elif [ -e "$MEDIAWIKI_SHARED/LocalSettings.php" ]; then
+    #Certain options may be updated. This logic is handled here
+    sed -i -e "s/\$wgSitename = .*;/\$wgSitename = \"$MEDIAWIKI_SITE_NAME\";/" $MEDIAWIKI_SHARED/LocalSettings.php
+
     ln -s $MEDIAWIKI_SHARED/LocalSettings.php $LOCAL_SETTINGS
   fi
 
