@@ -6,7 +6,7 @@ ENV USER_NAME=www-data \
     BASE_DIR=/home/www-data
 ENV HOME=${BASE_DIR}
 
-RUN curl https://copr.fedorainfracloud.org/coprs/g/ansible-service-broker/ansible-service-broker/repo/epel-7/group_ansible-service-broker-ansible-service-broker-epel-7.repo -o /etc/yum.repos.d/asb.repo
+RUN curl https://copr.fedorainfracloud.org/coprs/g/ansible-service-broker/ansible-service-broker-latest/repo/epel-7/group_ansible-service-broker-ansible-service-broker-latest-epel-7.repo -o /etc/yum.repos.d/asb.repo
 
 RUN yum update  -y \
     && yum install -y epel-release \
