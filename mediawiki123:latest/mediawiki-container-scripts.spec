@@ -10,8 +10,8 @@ Release:	1%{build_timestamp}%{?dist}
 Summary:	Scripts for the mediawiki container image
 
 License:	ASL 2.0
-URL:		https://github.com/jmontleon/dockerfiles
-Source0:	https://github.com/jmontleon/dockerfiles/archive/dockerfiles-%{version}.tar.gz
+URL:		https://github.com/fusor/dockerfiles
+Source0:	https://github.com/fusor/dockerfiles/archive/mediawiki-container-scripts-%{version}.tar.gz
 BuildArch:  noarch
 
 %description
