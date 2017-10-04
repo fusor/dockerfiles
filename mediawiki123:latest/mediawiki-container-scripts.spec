@@ -5,7 +5,7 @@
 %endif
 
 Name: mediawiki-container-scripts
-Version:	1.0.1
+Version:	1.0.2
 Release:	1%{build_timestamp}%{?dist}
 Summary:	Scripts for the mediawiki container image
 
@@ -31,6 +31,9 @@ install -m 644 mediawiki123.conf %{buildroot}%{_datadir}/%{name}/mediawiki123.co
 %{_datadir}/%{name}/mediawiki123.conf.example
 
 %changelog
+* Wed Oct 04 2017 Jason Montleon <jmontleo@redhat.com> 1.0.2-1
+- update archive name (jmontleo@redhat.com)
+
 * Wed Oct 04 2017 Jason Montleon <jmontleo@redhat.com> 1.0.1-1
 - new package built with tito
 
