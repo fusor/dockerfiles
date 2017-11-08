@@ -10,7 +10,7 @@ RUN curl https://copr.fedorainfracloud.org/coprs/g/ansible-service-broker/ansibl
 
 RUN yum update  -y \
     && yum install -y epel-release \
-    && yum install -y mediawiki123 php-pgsql ImageMagick git php-pecl-apcu php-intl postgresql mediawiki-container-scripts \
+    && yum install -y mediawiki123 php-pgsql ImageMagick git php-pecl-apcu php-intl postgresql mediawiki-container-scripts php-mysql php-pear php-pecl-apcu php-process \
     && yum clean all
 
 RUN mkdir -p ${BASE_DIR} ${BASE_DIR}/etc \
