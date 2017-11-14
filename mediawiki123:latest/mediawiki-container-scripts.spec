@@ -5,7 +5,7 @@
 %endif
 
 Name: mediawiki-container-scripts
-Version:	1.0.2
+Version:	1.1.0
 Release:	1%{build_timestamp}%{?dist}
 Summary:	Scripts for the mediawiki container image
 
