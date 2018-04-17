@@ -1,42 +1,35 @@
 FROM fedora:28
 
-#Update
-RUN dnf -y update && dnf clean all
-
-#Install VNC
-RUN dnf -y install tigervnc-server && dnf clean all
-
-#Install Fonts and other useful X packages
-RUN dnf -y install levien-inconsolata-fonts \
-                   xorg-x11-fonts-100dpi \ 
-                   xorg-x11-fonts-ISO8859-1-100dpi \
-                   xorg-x11-fonts-Type1 \
-                   && dnf clean all
-
-#Install basic window managers
-RUN dnf -y install fvwm \
-                   i3 \
-                   twm \
-                   && dnf clean all
-
-#Install Xfce
-RUN dnf -y groupinstall "Cinnamon Desktop" \
-                        "KDE" \
-                        "KDE Plasma Workspaces" \
-                        "LXDE Desktop" \
-                        "LXQt Desktop" \
-                        "MATE Desktop" \
-                        "Sugar Desktop Environment" \
-                        "Xfce Desktop"
-
-#Install useful tools
-RUN dnf -y install bind-utils \
+RUN dnf -y update && \
+    dnf -y install "@Cinnamon Desktop" \
+                   "@KDE" \
+                   "@KDE Plasma Workspaces" \
+                   "@LibreOffice" \
+                   "@LXDE Desktop" \
+                   "@LXQt Desktop" \
+                   "@Office/Productivity" \
+                   "@MATE Desktop" \
+                   "@Sugar Desktop Environment" \
+                   "@Xfce Desktop" \
+                   bind-utils \
                    firefox \
+                   fvwm \
+                   gimp \
                    hexchat \
+                   i3 \
+                   ksh \
+                   levien-inconsolata-fonts \
                    net-tools \
                    terminator \
                    thunderbird \
                    pidgin \
+                   tcsh \
+                   tigervnc-server \
+                   tmux \
+                   twm \
+                   xorg-x11-fonts-100dpi \
+                   xorg-x11-fonts-ISO8859-1-100dpi \
+                   xorg-x11-fonts-Type1 \
                    && dnf clean all
 
 COPY vnc.sh /usr/local/bin

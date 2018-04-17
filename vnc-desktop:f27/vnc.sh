@@ -1,11 +1,9 @@
 #!/bin/bash
 if ! whoami &> /dev/null; then
   if [ -w /etc/passwd ]; then
-    echo "${USER_NAME:-vnc}:x:$(id -u):0:${USER_NAME:-vnc} user:${HOME}:/bin/bash" >> /etc/passwd
+    echo "${USER_NAME:-vnc}:x:$(id -u):0:${USER_NAME:-vnc} user:${HOME}:/bin/${DESHELL}" >> /etc/passwd
   fi
 fi
-
-chown vnc /home/vnc && chmod 750 /home/vnc
 
 mkdir -p ~/.vnc
 echo $VNCPASS | vncpasswd -f > ~/.vnc/passwd && chmod 600 ~/.vnc/passwd
@@ -45,4 +43,9 @@ else
   echo PREFERRED=twm > /etc/sysconfig/desktop
 fi
 
+if [ ! -f ~/.bashrc ]; then
+  cp -r /etc/skel/.[b,c,k,m,z]* ~
+fi
+
+cd ~
 vncserver -t -fg :1
