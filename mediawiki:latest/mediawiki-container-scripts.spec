@@ -5,8 +5,8 @@
 %endif
 
 Name: mediawiki-container-scripts
-Version:	1.2.0
-Release:	1%{build_timestamp}%{?dist}
+Version:	1.3.0
+Release:	0%{build_timestamp}%{?dist}
 Summary:	Scripts for the mediawiki container image
 
 License:	ASL 2.0
