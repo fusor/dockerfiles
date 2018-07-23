@@ -5,8 +5,8 @@
 %endif
 
 Name: mediawiki-container-scripts
-Version:	1.3.0
-Release:	0%{build_timestamp}%{?dist}
+Version:	1.3.1
+Release:	1%{build_timestamp}%{?dist}
 Summary:	Scripts for the mediawiki container image
 
 License:	ASL 2.0
@@ -31,6 +31,11 @@ install -m 644 mediawiki.conf %{buildroot}%{_datadir}/%{name}/mediawiki.conf.exa
 %{_datadir}/%{name}/mediawiki.conf.example
 
 %changelog
+* Mon Jul 23 2018 Jason Montleon <jmontleo@redhat.com> 1.3.1-1
+- update releasers (jmontleo@redhat.com)
+- Make it possible to unbind (jmontleo@redhat.com)
+- add mediawiki:latest (jmontleo@redhat.com)
+
 * Wed Oct 04 2017 Jason Montleon <jmontleo@redhat.com> 1.0.2-1
 - update archive name (jmontleo@redhat.com)
 
