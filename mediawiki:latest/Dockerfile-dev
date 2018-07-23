@@ -6,6 +6,8 @@ ENV USER_NAME=www-data \
     PHP=71 \
     HOME=${BASE_DIR}
 
+COPY mediawiki.conf /usr/share/mediawiki-container-scripts/mediawiki.conf.example
+
 RUN curl https://copr.fedorainfracloud.org/coprs/g/ansible-service-broker/ansible-service-broker-latest/repo/epel-7/group_ansible-service-broker-ansible-service-broker-latest-epel-7.repo -o /etc/yum.repos.d/asb.repo \
     && yum -y update \
     && yum -y install epel-release \
@@ -42,7 +44,6 @@ RUN curl https://copr.fedorainfracloud.org/coprs/g/ansible-service-broker/ansibl
     && sed "s@${USER_NAME}:x:${USER_UID}:@${USER_NAME}:x:\${USER_ID}:@g" /etc/passwd > ${BASE_DIR}/etc/passwd.template
 
 COPY entrypoint.sh /usr/bin/
-COPY mediawiki.conf /usr/share/mediawiki-container-scripts/mediawiki.conf.example
 
 EXPOSE 8080
 USER ${USER_UID}

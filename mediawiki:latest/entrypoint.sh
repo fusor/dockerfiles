@@ -20,9 +20,11 @@ fi
 LOCAL_SETTINGS=${BASE_DIR}/httpd/mediawiki/LocalSettings.php
 IMAGE_DIR=${BASE_DIR}/httpd/mediawiki/images
 if [ -d "$MEDIAWIKI_SHARED" ]; then
-  if [ ! -e "$MEDIAWIKI_SHARED/LocalSettings.php" ] && [ ! -z "${DB_HOST}" ]; then
-    # If the container is restarted this will fail because the tables are already created
-    # but there won't be a LocalSettings.php
+  if [ -e "$MEDIAWIKI_SHARED/LocalSettings.php" ] && [ -z "${DB_HOST}" ]; then
+    #In the Unbind scenario the LocalSettings.php exists but the DB_HOST env var does not.
+    rm -f "$MEDIAWIKI_SHARED/LocalSettings.php"
+  elif [ ! -e "$MEDIAWIKI_SHARED/LocalSettings.php" ] && [ ! -z "${DB_HOST}" ]; then
+    #In the Bind scenario the LocalSettings.php does not exist but the DB_HOST env var does.
     scl enable rh-php${PHP} "php /usr/share/mediawiki/maintenance/install.php \
       --confpath ${BASE_DIR}/httpd/mediawiki \
       --dbname \"$DB_NAME\" \
