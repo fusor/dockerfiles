@@ -30,6 +30,7 @@ RUN dnf -y update && \
                    xorg-x11-fonts-100dpi \
                    xorg-x11-fonts-ISO8859-1-100dpi \
                    xorg-x11-fonts-Type1 \
+                   --skip-broken --allowerasing \
                    && dnf clean all
 
 COPY vnc.sh /usr/local/bin
