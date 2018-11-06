@@ -7,7 +7,7 @@
 Summary: A wiki engine
 Name:    mediawiki
 Version: 1.27.4
-Release: 8%{?dist}
+Release: 9%{?dist}
 License: GPLv2+ and Public Domain and CC-BY-SA and MIT and ASL 2.0 and BSD and GPLv3+
 # License breakdown: see PACKAGE-LICENSING
 URL:     http://www.mediawiki.org/
@@ -103,6 +103,8 @@ for i in ${SCRIPTS}; do
     chmod +x %{buildroot}%{mwdatadir}/${i}
 done
 
+sed -i 's,@prefix@,/usr,g' %{buildroot}/usr/share/mediawiki/vendor/pear/mail_mime/scripts/phail.php
+
 %files
 %defattr(-,root,root,-)
 %license PACKAGE-LICENSING COPYING COPYING.MIT
@@ -127,6 +129,9 @@ done
 %doc FAQ HISTORY README docs
 
 %changelog
+* Tue Nov 6 2018 Jason Montleon <jmontleo@redhat.com> - 1.27.4-9
+- Fix shebang in phail.php
+
 * Tue Apr 24 2018 Jason Montleon <jmontleo@redhat.com> - 1.27.4-8
 - Update to 1.27.4-8. Intended for use with an rh-phpXX SCL.
 
