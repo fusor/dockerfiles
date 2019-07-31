@@ -37,7 +37,7 @@ if [ -d "$MEDIAWIKI_SHARED" ]; then
       --installdbuser \"$DB_USER\" \
       --installdbpass \"$DB_PASSWORD\" \
       --scriptpath \"\" \
-      --server \"http://${MEDIAWIKI_SITE_SERVER}\" \
+      --server \"https://${MEDIAWIKI_SITE_SERVER}\" \
       --lang \"$MEDIAWIKI_SITE_LANG\" \
       --pass \"$MEDIAWIKI_ADMIN_PASS\" \
       \"$MEDIAWIKI_SITE_NAME\" \
