@@ -71,7 +71,7 @@ if [ -e "$LOCAL_SETTINGS" -a "$MEDIAWIKI_UPDATE" = true ]; then
 fi
 
 if [ -e  "$LOCAL_SETTINGS" ]; then
-  sed -i -e '/$wgLogo/c\$wgLogo = '\"$MEDIAWIKI_LOGO'\";' $LOCAL_SETTINGS
+  sed --follow-symlinks -i -e '/$wgLogo/c\$wgLogo = '\"$MEDIAWIKI_LOGO'\";' $LOCAL_SETTINGS
 fi
 
 scl enable rh-php${PHP} php-fpm
